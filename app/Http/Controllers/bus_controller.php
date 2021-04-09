@@ -15,7 +15,8 @@ class bus_controller extends Controller
      */
     public function index()
     {
-        //
+        $buses = BusModel::all();
+        return view('viewbus',compact('buses'));
     }
 
     /**

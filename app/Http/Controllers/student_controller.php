@@ -15,7 +15,8 @@ class student_controller extends Controller
      */
     public function index()
     {
-        //
+       $students = StudentModel::all();
+       return view('viewstudent',compact('students'));
     }
 
     /**
@@ -23,6 +24,14 @@ class student_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function search(Request $request)
+    {
+        $getRollno = request('srollno');
+        $students = StudentModel::query()->where('srollno','LIKE',"%{$getRollno}%")->get();
+        return view('viewstudent',compact('students'));
+    }
+
+
     public function create()
     {
        return view('student');
